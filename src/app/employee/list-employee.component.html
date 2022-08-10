@@ -1,0 +1,45 @@
+<h1>Employee</h1>
+<a routerLink="add-employee" class="btn btn-sm btn-success mb-2">Add Employee</a>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th style="width: 10%">User Name</th>
+    <th style="width: 15%">First Name</th>
+    <th style="width: 15%">Last Name</th>
+    <th style="width: 10%">Email</th>
+    <th style="width: 15%">Birth Date</th>
+    <th style="width: 13%">Basic Salary</th>
+    <th style="width: 7%">Status</th>
+    <th style="width: 10%">Group</th>
+    <th style="width: 10%">Description</th>
+    <th style="width: 2%"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let employee of employee">
+    <td>{{employee.userName}}</td>
+    <td>{{employee.firstName}}</td>
+    <td>{{employee.lastName}}</td>
+    <td>{{employee.email}}</td>
+    <td>{{employee.birthDate}}</td>
+    <td>{{employee.basicSalary}}</td>
+    <td>{{employee.status}}</td>
+    <td>{{employee.group}}</td>
+    <td>{{employee.description}}</td>
+    <td style="white-space: nowrap">
+      <a routerLink="edit-employee/{{employee.id}}" class="btn btn-sm btn-primary mr-1">Edit</a>
+      <button (click)="deleteEmployee(employee.id)" class="btn btn-sm btn-danger btn-delete-user"
+              [disabled]="employee.isDeleting">
+        <span *ngIf="employee.isDeleting" class="spinner-border spinner-border-sm"></span>
+        <span *ngIf="!employee.isDeleting">Delete</span>
+      </button>
+    </td>
+  </tr>
+  <tr *ngIf="!isLoading">
+    <td colspan="10" class="text-center">
+      <span class="spinner-border spinner-border-lg align-center"></span>
+      <p>Data No Availabale</p>
+    </td>
+  </tr>
+  </tbody>
+</table>
